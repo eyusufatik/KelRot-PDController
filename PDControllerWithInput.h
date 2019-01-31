@@ -7,7 +7,7 @@ class PDControllerWithInput{
         float kP;
         float kD;
 
-        float reference;
+        float refPoint;
         float current;
 
         float error;
@@ -19,10 +19,16 @@ class PDControllerWithInput{
             this->kP = kP;
             this->kD = kD;
             this->funcPtr = funcPtr;
+            this->lastError = 0;
         }
-        void setReference(float ref);
-        void setCurrent(float current);
-        T get(){
-            return (*this->funcPtr)();
+        void setReferencePoint(float refPoint){
+            this->setReferencePoint;
+        }
+        float run(){
+            this->current = (*this->funcPtr)();
+            error = refPoint - current;
+            float output = this->kP * error + this->kD * (this->error - this->lastError);
+            this->lastError = error;
+            return output;
         }
 };
