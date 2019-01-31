@@ -21,10 +21,12 @@ class PDControllerWithInput{
             this->funcPtr = funcPtr;
             this->lastError = 0;
         }
+
         void setReferencePoint(float refPoint){
             this->setReferencePoint;
         }
-        float run(){
+
+        float getOutput(){
             this->current = (*this->funcPtr)();
             error = refPoint - current;
             float output = this->kP * error + this->kD * (this->error - this->lastError);
